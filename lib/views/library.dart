@@ -1,8 +1,9 @@
+// library.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:awesome_circular_chart/awesome_circular_chart.dart';
+import 'package:oxygenar_front/main.dart';
+import 'package:oxygenar_front/views/details.dart';
 
-void main() => runApp(const Library());
 List<String> texts = [
   '¡Descubre el poder de la naturaleza en tus espacios favoritos!',
   'Hoy plantamos, mañana respiramos!',
@@ -12,117 +13,228 @@ List<String> texts = [
 ];
 
 class Library extends StatelessWidget {
-  const Library({super.key});
+  const Library({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Plaint',
-              style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.green,
+            size: 28,
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                flex: 3, // 30%
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    height: 200.0,
-                    autoPlay: true,
-                    viewportFraction:
-                        1.0, // Make each item take up the entire width of the carousel
-                  ),
-                  items: [0, 1, 2, 3, 4].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          margin: const EdgeInsets.all(
-                              20), // Add some margin around the container
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const MyApp();
+            }));
+          },
+        ),
+        title: const Text(
+          'Mis Plantas',
+          style: TextStyle(
+              color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            flex: 3, // 30%
+            child: CarouselSlider(
+              options: CarouselOptions(
+                height: 200.0,
+                autoPlay: true,
+                viewportFraction:
+                    1.0, // Make each item take up the entire width of the carousel
+              ),
+              items: [0, 1, 2, 3, 4].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      margin: const EdgeInsets.all(
+                          20), // Add some margin around the container
+                      decoration: BoxDecoration(
+                        color: const Color(
+                            0xFF35A474), // Set the color of the container
+                        borderRadius:
+                            BorderRadius.circular(10), // Add some border radius
+                      ),
+                      child: Center(
+                        child: Text(
+                          texts[i],
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+          ),
+          Expanded(
+            flex: 7,
+            child: Row(
+              children: [
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2, // Number of columns
+                    childAspectRatio: 1, // Aspect ratio of each item
+                    mainAxisSpacing: 20, // Spacing between items vertically
+                    crossAxisSpacing: 20, // Spacing between items horizontally
+                    padding: const EdgeInsets.all(18.0), // Add padding
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
                           decoration: BoxDecoration(
                             color: const Color(
                                 0xFF35A474), // Set the color of the container
                             borderRadius: BorderRadius.circular(
                                 10), // Add some border radius
                           ),
-                          child: Center(
-                            child: Text(
-                              texts[i],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              ),
-              Expanded(
-                flex: 7, // 70%
-                child: Container(
-                  color: Colors.blue,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: Colors
-                                    .red, // Set the color of the container
-                                child: Center(child: Text('Widget 1')),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors
-                                    .green, // Set the color of the container
-                                child: Center(child: Text('Widget 2')),
-                              ),
-                            ),
-                          ],
+                          child: const Center(child: Text('Arbol 1')),
                         ),
                       ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: Colors
-                                    .yellow, // Set the color of the container
-                                child: Center(child: Text('Widget 3')),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors
-                                    .purple, // Set the color of the container
-                                child: Center(child: Text('Widget 4')),
-                              ),
-                            ),
-                          ],
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 2')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 3')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 4')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 5')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 6')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 7')),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                                0xFF35A474), // Set the color of the container
+                            borderRadius: BorderRadius.circular(
+                                10), // Add some border radius
+                          ),
+                          child: const Center(child: Text('Arbol 8')),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

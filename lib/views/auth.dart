@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oxygenar_front/main.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -8,7 +9,20 @@ class AuthScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.close,
+              color: Color(0xFF35A474),
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const MyApp();
+              }));
+            },
+          ),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -39,15 +53,25 @@ class AuthScreen extends StatelessWidget {
               Container(
                 width: 300.0,
                 height: 70.0,
-                child: ElevatedButton(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 42, 161, 36),
+                      spreadRadius: 1,
+                      blurRadius: 100,
+                      offset: Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: TextButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                    elevation: 50.0,
-                    shadowColor: Colors.green,
                   ),
                   child: Row(
                     mainAxisAlignment:

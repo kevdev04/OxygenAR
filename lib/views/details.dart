@@ -24,7 +24,16 @@ class Details extends StatelessWidget {
             ),
           ),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back, color: Colors.white),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 28.0,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           backgroundColor: const Color(0xFF35A474),
         ),
         body: Column(
@@ -125,74 +134,71 @@ class MyWidgetState extends State<MyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2, // Takes up 30% of the space
-      child: Container(
-        color: const Color.fromARGB(255, 255, 255, 255),
-        child: Row(
-          children: [
-            Expanded(
-              child: SizedBox.expand(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: button1Color,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
-                      ),
+    return Container(
+      color: const Color.fromARGB(255, 255, 255, 255),
+      child: Row(
+        children: [
+          Expanded(
+            child: SizedBox.expand(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: button1Color,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10),
                     ),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      // When button 1 is pressed, it turns white and button 2 turns green
-                      button1Color = Colors.white;
-                      button2Color = const Color(0xFF35A474);
-                    });
-                  },
-                  child: Text(
-                    'Cuidados de la Planta',
-                    style: TextStyle(
-                      color: button1Color == const Color(0xFF35A474)
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
+                ),
+                onPressed: () {
+                  setState(() {
+                    // When button 1 is pressed, it turns white and button 2 turns green
+                    button1Color = Colors.white;
+                    button2Color = const Color(0xFF35A474);
+                  });
+                },
+                child: Text(
+                  'Cuidados de la Planta',
+                  style: TextStyle(
+                    color: button1Color == const Color(0xFF35A474)
+                        ? Colors.white
+                        : Colors.black,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
-            Expanded(
-              child: SizedBox.expand(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: button2Color,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                      ),
+          ),
+          Expanded(
+            child: SizedBox.expand(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: button2Color,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
                     ),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      // When button 2 is pressed, it turns white and button 1 turns green
-                      button2Color = Colors.white;
-                      button1Color = const Color(0xFF35A474);
-                    });
-                  },
-                  child: Text(
-                    'Cuidados de la Planta',
-                    style: TextStyle(
-                      color: button2Color == const Color(0xFF35A474)
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
+                ),
+                onPressed: () {
+                  setState(() {
+                    // When button 2 is pressed, it turns white and button 1 turns green
+                    button2Color = Colors.white;
+                    button1Color = const Color(0xFF35A474);
+                  });
+                },
+                child: Text(
+                  'Cuidados de la Planta',
+                  style: TextStyle(
+                    color: button2Color == const Color(0xFF35A474)
+                        ? Colors.white
+                        : Colors.black,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
