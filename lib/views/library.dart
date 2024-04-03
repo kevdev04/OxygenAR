@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:awesome_circular_chart/awesome_circular_chart.dart';
 
 void main() => runApp(const Library());
 List<String> texts = [
@@ -55,7 +54,7 @@ class Library extends StatelessWidget {
                           child: Center(
                             child: Text(
                               texts[i],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -83,14 +82,14 @@ class Library extends StatelessWidget {
                               child: Container(
                                 color: Colors
                                     .red, // Set the color of the container
-                                child: Center(child: Text('Widget 1')),
+                                child: const Center(child: Text('Widget 1')),
                               ),
                             ),
                             Expanded(
                               child: Container(
                                 color: Colors
                                     .green, // Set the color of the container
-                                child: Center(child: Text('Widget 2')),
+                                child: const Center(child: Text('Widget 2')),
                               ),
                             ),
                           ],
@@ -104,14 +103,14 @@ class Library extends StatelessWidget {
                               child: Container(
                                 color: Colors
                                     .yellow, // Set the color of the container
-                                child: Center(child: Text('Widget 3')),
+                                child: const Center(child: Text('Widget 3')),
                               ),
                             ),
                             Expanded(
                               child: Container(
                                 color: Colors
                                     .purple, // Set the color of the container
-                                child: Center(child: Text('Widget 4')),
+                                child: const Center(child: Text('Widget 4')),
                               ),
                             ),
                           ],

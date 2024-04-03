@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "1081331983379",
+    "firebase_url": "https://oxygenar-default-rtdb.firebaseio.com",
+    "project_id": "oxygenar",
+    "storage_bucket": "oxygenar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081331983379:android:02ab89b6a8a8ceb6890be6",
+        "android_client_info": {
+          "package_name": "com.example.oxygenar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081331983379-l27n5mcch1dpce11nq1hnglr08dd8lvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVQbauTcNfnZE2XoYPoPGFaCJXqXyeiCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081331983379-fercf00ktcjd8h587pgddc03qqhm32o1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1081331983379-1f6te6bp7ka6qh07fqhnhhkhcdmaegai.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.oxygenar"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081331983379:android:553f29a4f06c0854890be6",
+        "android_client_info": {
+          "package_name": "com.example.oxygenar_front"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081331983379-l27n5mcch1dpce11nq1hnglr08dd8lvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVQbauTcNfnZE2XoYPoPGFaCJXqXyeiCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081331983379-fercf00ktcjd8h587pgddc03qqhm32o1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1081331983379-1f6te6bp7ka6qh07fqhnhhkhcdmaegai.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.oxygenar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
