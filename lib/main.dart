@@ -1,6 +1,7 @@
 // main.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:oxygenar_front/main.dart';
 import 'package:oxygenar_front/views/auth.dart';
 import 'package:oxygenar_front/views/library.dart';
 import 'package:oxygenar_front/views/mapview.dart';
@@ -83,13 +84,18 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text('Presiona conocer la condicion del aire que respiras',
+              const Padding(
+                padding: EdgeInsets.all(12.0), // Adjust the padding as needed
+                child: Text(
+                  'Presiona conocer la condicion del aire que respiras',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 21.0,
                     fontWeight: FontWeight.w500,
                   ),
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               const SizedBox(height: 80.0),
               // ignore: sized_box_for_whitespace
               const RotatingButton(),

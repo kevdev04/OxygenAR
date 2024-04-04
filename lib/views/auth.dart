@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:oxygenar_front/main.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -17,9 +20,7 @@ class AuthScreen extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const MyApp();
-              }));
+              Navigator.pop(context); // Going back to previous screen
             },
           ),
         ),
@@ -36,8 +37,7 @@ class AuthScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 50.0), // Add left and right margins
+                margin: const EdgeInsets.symmetric(horizontal: 50.0),
                 child: const Center(
                   child: Text(
                     '¡Descubre la belleza que crece a tu alrededor!',
@@ -49,7 +49,6 @@ class AuthScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50.0),
-              // ignore: sized_box_for_whitespace
               Container(
                 width: 300.0,
                 height: 70.0,
@@ -66,7 +65,9 @@ class AuthScreen extends StatelessWidget {
                   ],
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    signInWithGoogle();
+                  },
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
@@ -74,15 +75,14 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceAround, // Center the content
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Image.asset(
                         'assets/logo/google.png',
                         width: 30,
                         height: 30,
                       ),
-                      const SizedBox(width: 10), // Add some spacing
+                      const SizedBox(width: 10),
                       const Text('Continuar con Google',
                           style:
                               TextStyle(fontSize: 20.0, color: Colors.black)),
@@ -91,9 +91,14 @@ class AuthScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Text(
-                'Visita nuestra Declaracion de Privacidad',
-                style: TextStyle(fontSize: 12.0),
+              GestureDetector(
+                onTap: () {
+                  // Handle privacy policy link
+                },
+                child: const Text(
+                  'Visita nuestra Declaracion de Privacidad',
+                  style: TextStyle(fontSize: 12.0),
+                ),
               ),
             ],
           ),
@@ -101,4 +106,18 @@ class AuthScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+signInWithGoogle() async {
+  GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  AuthCredential credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+  UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+  print(userCredential.user?.displayName);
 }

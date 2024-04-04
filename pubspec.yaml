@@ -46,6 +46,8 @@ dependencies:
   fluttertoast: ^8.2.4
   geocoding: ^3.0.0
   cloud_firestore: ^4.16.0
+  firebase_auth: ^4.19.0
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

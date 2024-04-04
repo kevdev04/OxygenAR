@@ -1,8 +1,6 @@
 // library.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:oxygenar_front/main.dart';
 import 'package:oxygenar_front/views/details.dart';
 import 'package:oxygenar_front/widgets/plant_card.dart';
@@ -16,7 +14,7 @@ List<String> texts = [
 ];
 
 class Library extends StatelessWidget {
-  const Library({Key? key}) : super(key: key);
+  const Library({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +92,6 @@ class Library extends StatelessWidget {
                     crossAxisSpacing: 20, // Spacing between items horizontally
                     padding: const EdgeInsets.all(18.0), // Add padding
                     children: const <Widget>[
-                      Plantscard(),
                       Plantscard(),
                       Plantscard(),
                       Plantscard(),
