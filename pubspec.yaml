@@ -37,7 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   awesome_circular_chart: ^1.0.0
-  flutter_svg: ^0.22.0 # Add this line
+  flutter_svg: ^2.0.10+1 # Add this line
 
   firebase_core:
   http: ^1.2.1
