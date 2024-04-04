@@ -28,6 +28,7 @@ class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   final LatLng _initialPosition = const LatLng(20.655356, -103.389449);
   final Set<Marker> _markers = {};
+  LatLng? _selectedMarkerPosition;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -53,6 +54,10 @@ class _MapScreenState extends State<MapScreen> {
       _markers.add(Marker(
         markerId: MarkerId(position.toString()),
         position: position,
+        draggable: true,
+        onDragEnd: (LatLng newPosition) {
+          _selectedMarkerPosition = newPosition;
+        },
       ));
     });
   }
@@ -71,7 +76,18 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
- @override
+  void _placeSelectedMarker() {
+    if (_selectedMarkerPosition != null) {
+      setState(() {
+        _markers.add(Marker(
+          markerId: MarkerId(_selectedMarkerPosition.toString()),
+          position: _selectedMarkerPosition!,
+        ));
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -85,6 +101,26 @@ class _MapScreenState extends State<MapScreen> {
             mapType: MapType.normal,
             markers: _markers,
             onTap: _addMarker,
+          ),
+          Positioned(
+            bottom: 20.0,
+            right: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  onPressed: _placeSelectedMarker,
+                  child: const Icon(Icons.add),
+                ),
+                const SizedBox(height: 10),
+                FloatingActionButton(
+                  onPressed: () {
+                    _selectedMarkerPosition = null;
+                  },
+                  child: const Icon(Icons.delete),
+                ),
+              ],
+            ),
           ),
           Positioned(
             top: 20.0,
@@ -129,3 +165,4 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 }
+
