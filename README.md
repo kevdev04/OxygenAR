@@ -9,6 +9,8 @@ Rebeca Abigail Mendoza Farías (BACK)
 
 Video Demostrativo del APK: https://youtube.com/shorts/f26fs8HCsBU?feature=share
 
+Descargar APK: https://drive.google.com/drive/folders/1olSWh_RM0zJrMWYklARCuzHS4AcHYAlJ?usp=drive_link
+
 
 
 Problema
