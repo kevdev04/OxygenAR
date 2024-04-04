@@ -37,6 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   awesome_circular_chart: ^1.0.0
+  flutter_svg: ^0.22.0 # Add this line
+
   firebase_core:
   http: ^1.2.1
   json_serializable: ^6.7.1
@@ -72,6 +74,7 @@ flutter:
     - assets/logo/icono.png
     - assets/logo/google.png
     - assets/plants/arbol.png
+    - assets/logo/mainbtn.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
