@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 void main() => runApp(const MapView());
 
 class MapView extends StatelessWidget {
-  const MapView({super.key});
+  const MapView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MapView extends StatelessWidget {
 }
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -61,14 +61,6 @@ class _MapScreenState extends State<MapScreen> {
       }
     } else {
       print('Error al realizar la solicitud de geocodificación');
-    }
-  }
-
-  void _saveMarkerCoordinates() {
-    if (_markers.isNotEmpty) {
-      LatLng markerPosition = _markers.first.position;
-      print('Coordenadas del marcador: $markerPosition');
-      // Aquí puedes realizar cualquier acción con las coordenadas del marcador
     }
   }
 
@@ -123,24 +115,6 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 ],
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 20.0,
-            right: 20.0,
-            child: FloatingActionButton(
-              onPressed: _saveMarkerCoordinates,
-              child: const Icon(Icons.save),
-            ),
-          ),
-          Positioned(
-            bottom: 80.0,
-            right: 20.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                // Puedes agregar acciones adicionales aquí si es necesario
-              },
-              child: const Icon(Icons.add),
             ),
           ),
         ],

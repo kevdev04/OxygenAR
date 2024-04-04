@@ -48,7 +48,6 @@ dependencies:
   cloud_firestore: ^4.16.0
   firebase_auth: ^4.19.0
   google_sign_in: ^6.2.1
-  flutter_google_places_autocomplete: ^3.0.0
 
 dev_dependencies:
   flutter_test:
