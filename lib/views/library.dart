@@ -92,24 +92,59 @@ class Library extends StatelessWidget {
                     padding: const EdgeInsets.all(18.0), // Add padding
                     children: <Widget>[
                       GestureDetector(
-  onTap: () {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const Details();
-    }));
-  },
-  child: Container(
-    decoration: BoxDecoration(
-      color: const Color(0xFF35A474),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Column(
-      children: [
-        
-      ],
-    ),
-  ),
-)
-
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 6,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        color: Colors
+                                            .red, // Replace with your desired color or decoration
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 8,
+                                      child: Container(
+                                        color: Colors
+                                            .blue, // Replace with your desired color or decoration
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 4,
+                                child: Column(
+                                  children: [
+                                    Text('Main Text',
+                                        style: TextStyle(
+                                            fontSize:
+                                                20)), // Replace with your main text
+                                    Text('Brief Description',
+                                        style: TextStyle(
+                                            fontSize:
+                                                12)), // Replace with your brief description
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
