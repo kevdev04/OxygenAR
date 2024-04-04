@@ -48,6 +48,7 @@ dependencies:
   cloud_firestore: ^4.16.0
   firebase_auth: ^4.19.0
   google_sign_in: ^6.2.1
+  d_chart: ^2.6.9
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,11 @@ flutter:
     - assets/logo/google.png
     - assets/plants/arbol.png
     - assets/logo/mainbtn.png
+    - assets/logo/tree.png
+    - assets/logo/pino.png
+    - assets/logo/palma.png
+    - assets/logo/limonero.png
+    - assets/logo/arboliq.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

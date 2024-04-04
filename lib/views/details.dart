@@ -80,6 +80,27 @@ class Details extends StatelessWidget {
                           topRight: Radius.circular(30.0),
                         ),
                       ),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment
+                            .spaceAround, // or MainAxisAlignment.spaceBetween
+                        children: [
+                          Text(
+                            'Distribución geográfica: Bosques templados, Norteamérica: 70%',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            'Especies de encino: Varias especies: 450+',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            'Área forestal mundial: Bosques templados: 5%',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const Expanded(
@@ -157,7 +178,7 @@ class MyWidgetState extends State<MyWidget> {
                   });
                 },
                 child: Text(
-                  'Cuidados de la Planta',
+                  'Información de la Planta',
                   style: TextStyle(
                     color: button1Color == const Color(0xFF35A474)
                         ? Colors.white

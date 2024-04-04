@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
               // ignore: sized_box_for_whitespace
               const RotatingButton(),
               const SizedBox(height: 50.0),
-              const Text('0%',
+              const Text('21%',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 40.0,
@@ -132,9 +132,9 @@ class HomePage extends StatelessWidget {
                   items: [
                     {'icon': Icons.compost, 'text': 'C02 Purificado'},
                     {'icon': Icons.map, 'text': 'Mapa'},
-                    {'icon': Icons.school, 'text': 'School'},
-                    {'icon': Icons.work, 'text': 'Work'},
-                    {'icon': Icons.thermostat, 'text': 'Temperatura'},
+                    {'icon': Icons.diversity_3_outlined, 'text': 'Comunidad'},
+                    {'icon': Icons.loyalty, 'text': 'Beneficios'},
+                    {'icon': Icons.air, 'text': 'Calidad Aire'},
                   ].map((item) {
                     return Builder(
                       builder: (BuildContext context) {

@@ -66,7 +66,7 @@ class AuthScreen extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    signInWithGoogle();
+                    signInWithGoogle(context);
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
@@ -108,16 +108,63 @@ class AuthScreen extends StatelessWidget {
   }
 }
 
-signInWithGoogle() async {
-  GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+void signInWithGoogle(BuildContext context) async {
+  try {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    if (googleUser == null) {
+      // The user didn't sign in correctly
+      return;
+    }
 
-  AuthCredential credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
-  UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
-  print(userCredential.user?.displayName);
+    GoogleSignInAuthentication? googleAuth = await googleUser.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    if (userCredential.user != null) {
+      Navigator.pop(context); // Going back to previous screen
+    }
+  } catch (e) {
+    if (e is PlatformException && e.code == 'network_error') {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Error'),
+          content: const Text('Network error occurred. Please try again.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Closing the dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Bienvenido a Plaint!'),
+          content: const Text('Ahora disfruta de todas las funcionalidades.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const MyApp();
+                }));
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 }

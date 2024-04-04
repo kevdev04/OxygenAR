@@ -1,9 +1,10 @@
 // library.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:oxygenar_front/main.dart';
 import 'package:oxygenar_front/views/details.dart';
-import 'package:oxygenar_front/widgets/plant_card.dart';
 
 List<String> texts = [
   '¡Descubre el poder de la naturaleza en tus espacios favoritos!',
@@ -14,7 +15,7 @@ List<String> texts = [
 ];
 
 class Library extends StatelessWidget {
-  const Library({super.key});
+  const Library({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,14 +92,417 @@ class Library extends StatelessWidget {
                     mainAxisSpacing: 20, // Spacing between items vertically
                     crossAxisSpacing: 20, // Spacing between items horizontally
                     padding: const EdgeInsets.all(18.0), // Add padding
-                    children: const <Widget>[
-                      Plantscard(),
-                      Plantscard(),
-                      Plantscard(),
-                      Plantscard(),
-                      Plantscard(),
-                      Plantscard(),
-                      Plantscard(),
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF35A474),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .park, // Replace with your first icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .add, // Replace with your second icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xFF35A474),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/plants/arbol.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: Center(
+                                  // Add this line
+                                  child: Text(
+                                    'Encino',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF35A474),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .park, // Replace with your first icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .add, // Replace with your second icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xFF35A474),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/logo/pino.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: Center(
+                                  // Add this line
+                                  child: Text(
+                                    'Pino',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF35A474),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .park, // Replace with your first icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .favorite, // Replace with your second icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xFF35A474),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/logo/palma.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: Center(
+                                  // Add this line
+                                  child: Text(
+                                    'Palma',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF35A474),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .park, // Replace with your first icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .favorite, // Replace with your second icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xFF35A474),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/logo/limonero.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: Center(
+                                  // Add this line
+                                  child: Text(
+                                    'Limonero',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const Details();
+                          }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF35A474),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
+                                        ),
+                                        child: const Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .park, // Replace with your first icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .favorite, // Replace with your second icon
+                                              color: Colors.white,
+                                              size: 25,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xFF35A474),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/logo/arboliq.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: Center(
+                                  // Add this line
+                                  child: Text(
+                                    'Arbol Liquido',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
