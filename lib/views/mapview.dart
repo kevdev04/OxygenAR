@@ -8,7 +8,7 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MapScreen(),
     );
@@ -16,14 +16,17 @@ class MapView extends StatelessWidget {
 }
 
 class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
 
-  final LatLng _initialPosition = LatLng(19.432608, -99.133209);
+  final LatLng _initialPosition = const LatLng(19.432608, -99.133209);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -32,12 +35,48 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _initialPosition,
-          zoom: 11.0,
-        ),
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: _initialPosition,
+              zoom: 11.0,
+            ),
+          ),
+          Positioned(
+            bottom: 140.0,
+            right: 10.0,
+            child: FloatingActionButton(
+              onPressed: () {
+                // Add your onPressed code here!
+              },
+              materialTapTargetSize: MaterialTapTargetSize.padded,
+              backgroundColor: Colors.green,
+              child: const Icon(
+                Icons.map,
+                size: 36.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 240.0,
+            right: 10.0,
+            child: FloatingActionButton(
+              onPressed: () {
+                // Add your onPressed code here!
+              },
+              materialTapTargetSize: MaterialTapTargetSize.padded,
+              backgroundColor: Colors.green,
+              child: const Icon(
+                Icons.map,
+                size: 36.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
