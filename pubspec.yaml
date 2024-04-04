@@ -41,6 +41,8 @@ dependencies:
   http: ^1.2.1
   json_serializable: ^6.7.1
   google_maps_flutter: ^2.6.0
+  fluttertoast: ^8.2.4
+  geocoding: ^3.0.0
 
 dev_dependencies:
   flutter_test:
