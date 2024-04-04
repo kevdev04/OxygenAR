@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:oxygenar_front/views/auth.dart';
 import 'package:oxygenar_front/views/library.dart';
+import 'package:oxygenar_front/views/mapview.dart';
 import 'package:oxygenar_front/widgets/rotating_button.dart';
 
 void main() => runApp(const MyApp());
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const AuthScreen()),
+                MaterialPageRoute(builder: (context) => const MapView()),
               );
             },
           ),
