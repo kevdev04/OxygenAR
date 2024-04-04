@@ -21,23 +21,33 @@ class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-
   final LatLng _initialPosition = const LatLng(19.432608, -99.133209);
   final Set<Marker> _markers = {};
 
-
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-    _setMapStyle();
   }
 
-void _addMarker(LatLng position) {
+  Future<void> _searchAndPlaceMarker(String value) async {
+    List<Location> locations = await locationFromAddress(value);
+    if (locations.isNotEmpty) {
+      Location location = locations.first;
+      LatLng latLng = LatLng(location.latitude, location.longitude);
+      _addMarker(latLng);
+      // Mueve la cámara del mapa a la nueva ubicación
+      mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
+    } else {
+      // No se encontró ninguna ubicación para la dirección proporcionada
+      // Puedes mostrar un mensaje de error al usuario o realizar otra acción apropiada.
+    }
+  }
+
+  void _addMarker(LatLng position) {
     setState(() {
       _markers.clear();
       _markers.add(Marker(
@@ -47,18 +57,13 @@ void _addMarker(LatLng position) {
     });
   }
 
- Future<void> _setMapStyle() async {
-    String style = await DefaultAssetBundle.of(context).loadString("assets/map_style.json");
-    mapController.setMapStyle(style);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mapa con Búsqueda de Direcciones'),
       ),
-       body: Stack(
+      body: Stack(
         children: <Widget>[
           GoogleMap(
             onMapCreated: _onMapCreated,
@@ -94,17 +99,7 @@ void _addMarker(LatLng position) {
                   suffixIcon: Icon(Icons.search),
                 ),
                 onSubmitted: (value) async {
-                  List<Location> locations = await locationFromAddress(value);
-                  if (locations.isNotEmpty) {
-                    Location location = locations.first;
-                    LatLng latLng = LatLng(location.latitude, location.longitude);
-                    _addMarker(latLng);
-                    // Mueve la cámara del mapa a la nueva ubicación
-                    mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
-                  } else {
-                    // No se encontró ninguna ubicación para la dirección proporcionada
-                    // Puedes mostrar un mensaje de error al usuario o realizar otra acción apropiada.
-                  }
+                  await _searchAndPlaceMarker(value);
                 },
               ),
             ),
@@ -114,5 +109,3 @@ void _addMarker(LatLng position) {
     );
   }
 }
-
-
