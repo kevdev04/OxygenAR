@@ -7,6 +7,10 @@ Angel Jesús Sánchez Pérez (BACK)
 Rebeca Abigail Mendoza Farías (BACK)
 
 
+Video Demostrativo del APK: https://youtube.com/shorts/f26fs8HCsBU?feature=share
+
+
+
 Problema
 
 El dióxido de carbono (CO2) es uno de los principales elementos que afectan al cambio climático y contribuyen al calentamiento global y al efecto invernadero. Las plantas juegan un papel crucial en el equilibrio de estos elementos: absorben CO2 y producen oxígeno a través de la fotosíntesis. Dado que cada planta tiene un efecto diferente en este proceso, la diversidad de plantas es crucial, así como considerar las condiciones climáticas locales, ya que estas pueden influir en su capacidad para contribuir al equilibrio climático.
