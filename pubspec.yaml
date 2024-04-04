@@ -46,6 +46,7 @@ dependencies:
   fluttertoast: ^8.2.4
   geocoding: ^3.0.0
   cloud_firestore: ^4.16.0
+  flutter_google_places_autocomplete: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(const MapView());
 
@@ -28,24 +29,9 @@ class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   final LatLng _initialPosition = const LatLng(20.655356, -103.389449);
   final Set<Marker> _markers = {};
-  LatLng? _selectedMarkerPosition;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-  }
-
-  Future<void> _searchAndPlaceMarker(String value) async {
-    List<Location> locations = await locationFromAddress(value);
-    if (locations.isNotEmpty) {
-      Location location = locations.first;
-      LatLng latLng = LatLng(location.latitude!, location.longitude!);
-      _addMarker(latLng);
-      // Mueve la cámara del mapa a la nueva ubicación
-      mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
-    } else {
-      // No se encontró ninguna ubicación para la dirección proporcionada
-      // Puedes mostrar un mensaje de error al usuario o realizar otra acción apropiada.
-    }
   }
 
   void _addMarker(LatLng position) {
@@ -54,36 +40,35 @@ class _MapScreenState extends State<MapScreen> {
       _markers.add(Marker(
         markerId: MarkerId(position.toString()),
         position: position,
-        draggable: true,
-        onDragEnd: (LatLng newPosition) {
-          _selectedMarkerPosition = newPosition;
-        },
       ));
     });
   }
 
-  void _handleSearch(String value) async {
-    print('Dirección ingresada: $value');
-    List<Location> locations = await locationFromAddress(value);
-    if (locations.isNotEmpty) {
-      Location location = locations.first;
-      LatLng latLng = LatLng(location.latitude!, location.longitude!);
-      _addMarker(latLng);
-      // Mueve la cámara del mapa a la nueva ubicación
-      mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
+  Future<void> _searchAndPlaceMarker(String address) async {
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=YOUR_API_KEY'));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final results = data['results'] as List<dynamic>;
+      if (results.isNotEmpty) {
+        final location = results[0]['geometry']['location'];
+        final latLng = LatLng(location['lat'], location['lng']);
+        _addMarker(latLng);
+        mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
+      } else {
+        print('No se encontraron resultados para la dirección: $address');
+      }
     } else {
-      print('No se encontraron ubicaciones para la dirección: $value');
+      print('Error al realizar la solicitud de geocodificación');
     }
   }
 
-  void _placeSelectedMarker() {
-    if (_selectedMarkerPosition != null) {
-      setState(() {
-        _markers.add(Marker(
-          markerId: MarkerId(_selectedMarkerPosition.toString()),
-          position: _selectedMarkerPosition!,
-        ));
-      });
+  void _saveMarkerCoordinates() {
+    if (_markers.isNotEmpty) {
+      LatLng markerPosition = _markers.first.position;
+      print('Coordenadas del marcador: $markerPosition');
+      // Aquí puedes realizar cualquier acción con las coordenadas del marcador
     }
   }
 
@@ -101,26 +86,6 @@ class _MapScreenState extends State<MapScreen> {
             mapType: MapType.normal,
             markers: _markers,
             onTap: _addMarker,
-          ),
-          Positioned(
-            bottom: 20.0,
-            right: 20.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                FloatingActionButton(
-                  onPressed: _placeSelectedMarker,
-                  child: const Icon(Icons.add),
-                ),
-                const SizedBox(height: 10),
-                FloatingActionButton(
-                  onPressed: () {
-                    _selectedMarkerPosition = null;
-                  },
-                  child: const Icon(Icons.delete),
-                ),
-              ],
-            ),
           ),
           Positioned(
             top: 20.0,
@@ -160,9 +125,26 @@ class _MapScreenState extends State<MapScreen> {
               ),
             ),
           ),
+          Positioned(
+            bottom: 20.0,
+            right: 20.0,
+            child: FloatingActionButton(
+              onPressed: _saveMarkerCoordinates,
+              child: const Icon(Icons.save),
+            ),
+          ),
+          Positioned(
+            bottom: 80.0,
+            right: 20.0,
+            child: FloatingActionButton(
+              onPressed: () {
+                // Puedes agregar acciones adicionales aquí si es necesario
+              },
+              child: const Icon(Icons.add),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
