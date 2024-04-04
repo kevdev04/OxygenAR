@@ -1,8 +1,11 @@
 // library.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:oxygenar_front/main.dart';
 import 'package:oxygenar_front/views/details.dart';
+import 'package:oxygenar_front/widgets/plant_card.dart';
 
 List<String> texts = [
   '¡Descubre el poder de la naturaleza en tus espacios favoritos!',
@@ -90,61 +93,15 @@ class Library extends StatelessWidget {
                     mainAxisSpacing: 20, // Spacing between items vertically
                     crossAxisSpacing: 20, // Spacing between items horizontally
                     padding: const EdgeInsets.all(18.0), // Add padding
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const Details();
-                          }));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF0F0F0),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 6,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        color: Colors
-                                            .red, // Replace with your desired color or decoration
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 8,
-                                      child: Container(
-                                        color: Colors
-                                            .blue, // Replace with your desired color or decoration
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Expanded(
-                                flex: 4,
-                                child: Column(
-                                  children: [
-                                    Text('Main Text',
-                                        style: TextStyle(
-                                            fontSize:
-                                                20)), // Replace with your main text
-                                    Text('Brief Description',
-                                        style: TextStyle(
-                                            fontSize:
-                                                12)), // Replace with your brief description
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
+                    children: const <Widget>[
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
+                      Plantscard(),
                     ],
                   ),
                 ),
