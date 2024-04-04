@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              Icons.account_circle_outlined,
+              Icons.map_outlined,
               color: Color(0xFF35A474),
               size: 28,
             ),
@@ -59,6 +59,19 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const MapView()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.account_circle_outlined,
+              color: Color(0xFF35A474),
+              size: 28,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AuthScreen()),
               );
             },
           ),
