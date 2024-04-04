@@ -26,7 +26,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-  final LatLng _initialPosition = const LatLng(19.432608, -99.133209);
+  final LatLng _initialPosition = const LatLng(20.655356, -103.389449);
   final Set<Marker> _markers = {};
 
   void _onMapCreated(GoogleMapController controller) {
@@ -37,7 +37,7 @@ class _MapScreenState extends State<MapScreen> {
     List<Location> locations = await locationFromAddress(value);
     if (locations.isNotEmpty) {
       Location location = locations.first;
-      LatLng latLng = LatLng(location.latitude, location.longitude);
+      LatLng latLng = LatLng(location.latitude!, location.longitude!);
       _addMarker(latLng);
       // Mueve la cámara del mapa a la nueva ubicación
       mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
@@ -57,19 +57,30 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
-  @override
+  void _handleSearch(String value) async {
+    print('Dirección ingresada: $value');
+    List<Location> locations = await locationFromAddress(value);
+    if (locations.isNotEmpty) {
+      Location location = locations.first;
+      LatLng latLng = LatLng(location.latitude!, location.longitude!);
+      _addMarker(latLng);
+      // Mueve la cámara del mapa a la nueva ubicación
+      mapController.animateCamera(CameraUpdate.newLatLngZoom(latLng, 15.0));
+    } else {
+      print('No se encontraron ubicaciones para la dirección: $value');
+    }
+  }
+
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mapa con Búsqueda de Direcciones'),
-      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: _initialPosition,
-              zoom: 11.0,
+              zoom: 15.0,
             ),
             mapType: MapType.normal,
             markers: _markers,
@@ -92,15 +103,24 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 ],
               ),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Buscar dirección',
-                  border: InputBorder.none,
-                  suffixIcon: Icon(Icons.search),
-                ),
-                onSubmitted: (value) async {
-                  await _searchAndPlaceMarker(value);
-                },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        hintText: 'Buscar dirección',
+                        border: InputBorder.none,
+                      ),
+                      onSubmitted: _searchAndPlaceMarker,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      _searchAndPlaceMarker('');
+                    },
+                  ),
+                ],
               ),
             ),
           ),
